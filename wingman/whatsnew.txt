@@ -1,0 +1,16 @@
+<b>What's New?</b><br><br>
+<b>Version 2.4 (Date: 2/5/2018)</b><br/><br/>
+Inventory on Hand feature workround is done. Feature is back up and working<br/><br/>
+Inventory On Hand missing sellers bug fix<br/><br/>
+Break Even Formula doesn't work<br/><br/>
+FBA fees updated for 2018<br/><br/>
+Filters script update for bug fix<br/><br/>
+Title Expand Bug fix<br/><br/>
+Listing Optimizer design update<br/><br/>
+Listing Optimizar Edit Product option fix<br/><br/>
+Estimated Sales bug fix for amazon subcategories rank<br/><br/>
+API updated for optimized speed and faster loading<br/><br/>
+<b>Version 2.3.1 (Date: 1/6/2018)</b><br/><br/>
+Inventory On Hand : Due to recent Amazon Changes, Inventory On Hand feature is no longer working. 
+<br>We are looking for workarounds and we will update you as soon as its back up.<br/><br/>
+Bug fix - extension show different estimated sales on product page and in extension<br/><br/>

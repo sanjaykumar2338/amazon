@@ -1,0 +1,124 @@
+.asinspector-iframe{
+    border: none;
+    width: 100%;
+    height:500px;
+    overflow: hidden;
+}
+.onpage-asinspector{
+    border-radius: 4px;
+    padding: 14px 18px;
+    border: 1px #ddd solid;
+    background-color: #fff;
+    margin: 0px;
+    height: 100%;
+    padding-top: 60px;
+    padding-bottom: 0px;
+}
+.onpage-asinspector .fba-fees-description img {
+    width:40px;
+    position: absolute;
+    left: 50%;
+    margin-left: -20px;
+    top:50%;
+    margin-top: -20px;
+}
+.onpage-asinspector .fba-fees-description{
+    height: 140px;
+}
+.onpage-asinspector h2.logo {
+    width: 100%;
+    float: left;
+    position: relative !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    margin-top: -44px;
+    padding: 0px 0px;
+    overflow: hidden;
+    border: none;
+}
+.store-options.sub-menu-dropdown a {
+    display: block;
+    float: left;
+    width: 100%;
+}
+ .store-options.sub-menu-dropdown{
+    position: absolute;
+    top: 1170px;
+    width: 200px;
+    overflow: auto;
+    left: 82%;
+    height: 150px;
+    background-color: #f7be64;
+    padding: 5px;
+    z-index: 9999;
+    display: block;
+}
+.remove-onpage-analyzer-options.sub-menu-dropdown {
+    position: absolute;
+    top: 1213px;
+    left: 82% !important;
+    overflow: hidden;
+    display: block;
+    z-index: 99999999;
+    height: auto;
+    background-color: #ffffff;
+    padding: 5px;
+    width: 200px !important;
+    border: 1px solid #e0e0e0;
+}
+.remove-onpage-analyzer-options.sub-menu-dropdown a{
+    background-color: #f7be64;
+    width: 100% !important;
+    display: block;
+    padding: 8px;
+    color: #fff;
+    text-decoration: none !important;
+    margin-bottom: 5px;
+}
+.remove-onpage-analyzer-options.sub-menu-dropdown a:hover {
+    background-color: #000;
+    text-decoration: none !important;
+}
+.hide-if-no-salesrank.actions{
+    position: relative !important;
+}
+.onpage-asinspector h4.line-separator {
+    padding: 4px 20px;
+    margin: 10px -20px 10px -19px;
+    text-align: center;
+}
+
+/* load ide ui */
+￼Cancel
+.onpage-asinspector .asin-line{
+    border-top: 1px solid #E7E7E7;
+    height: 1px;
+    max-height:1px;
+}
+
+.onpage-asinspector .asin-line.yellow{
+    border-top: 4px solid rgb(244, 193, 74);
+}
+
+.onpage-asinspector input[name="salesrankInput"] {
+    width: 50px;
+    margin-right: 5px;
+}
+
+.onpage-asinspector .actions img {
+    width: 30px;
+    cursor: pointer;
+}
+
+/*.sub-menu-dropdown {
+    left: 84px;
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+.remove-onpage-analyzer-options.sub-menu-dropdown {
+    width: 157px;
+    left: 15px;
+}*/

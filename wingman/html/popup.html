@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+      <link rel="stylesheet" href="../css/general.css" />
+      <link rel="stylesheet" href="../css/css.css?02" />
+      <link rel="stylesheet" type="text/css" href="../js/dataTable/jquery.dataTables.min.css">
+      <link rel="stylesheet" href="../js/qtip2/jquery.qtip.min.css">
+      <script src="../js/jquery-3.3.1.min.js"></script>
+      <script src="../js/bootbox.min.js"></script>    
+      <title>Legendary Analysis</title>
+      <link rel="icon" href="../images/favicon.png" type="image/x-icon">
+      <script src="../js/colorbox/jquery.colorbox-min.js"></script>
+      <link rel="stylesheet" href="../js/colorbox/example4/colorbox.css" />
+      <script src="../js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="../css/bootstrap.min.css">
+      <script src="../js/qtip2/jquery.qtip.min.js"></script>
+      <link rel="stylesheet" href="../js/qtip2/jquery.qtip.min.css" />
+      <script type="text/javascript" src="../js/tablesorter/js/jquery.tablesorter.js"></script>
+      <script type="text/javascript" src="../js/dataTable/jquery.dataTables.min.js"></script>
+      <script type="text/javascript" src="../js/tablesorter/js/jquery.tablesorter.widgets.js"></script>
+      <script type="text/javascript" src="../js/tablesorter/js/jquery.tablesorter.widgets.custom.js"></script>
+      <script type="text/javascript" src="../js/tablesorter/js/widget-reorder.js"></script>
+      <script type="text/javascript" src="../js/tablesorter/js/widget-resize.js"></script>
+      <link rel="stylesheet" href="../js/tablesorter/css/theme.ice.css" />
+      <script src="../js/export/custom-export.js"></script>
+      <script src="../js/jquery.tabletoCSV.js"></script>
+      <script src="../js/popup.js"></script>
+      <script src="../js/getEstSales.js"></script>
+   </head>
+   <body class="bigBody">
+      <img class="main-loader" src="../images/loader_big.svg" />
+      <div class="body-container">
+         <div class="contents">
+            <div class="header">
+               <a href="https://www.amazonsoldout.com" target="_blank" class="logo" tabindex="9999">
+                  <!-- <img class="main-logo" src="../images/ls-research-1.gif" /> -->
+                  <img class="main-logo" src="../images/logo_images/logo.png" />
+               </a>
+               <div class="header-elements">
+                  <div class="operation-popup">
+                     <button class="toggle_btn"></button>
+                     <div id="menu-options-column-number" style="display: none;">
+                        <a href="javascript:void(0);" class="cn-select-all">Select all</a>
+                        <a href="javascript:void(0);" class="cn-deselect-all">Deselect all</a>
+                        <a href="javascript:void(0);" class="cn-invert-selection">Invert selection</a>
+                        <a href="#" class="cn-delete-all-selected">Delete selected</a>
+                        <a href="#" class="cn-delete-all-not-selected">Delete <b>not</b> selected</a>
+                        <a href="#" class="cn-export-all-selected-csv" id="cn-export-all-selected-csv" download="data.csv">Export selected to CSV</a>
+                        <a href="#" class="cn-copy-asin-all-selected">Export ASINs of selected</a>
+                     </div>
+                  </div>
+                  <div class="header-division header-Search">
+                     <div class="image-header">
+                        <img class="icon-header" src="../images/icons/vector1.png" />
+                     </div>
+                     <div>
+                        <span class="info1">
+                        </span>
+                        </br><b id="keyword_search" class="text-bottom" style="color: rgb(255, 153, 0) !important"><img id="search_icon_load" src="../images/loader-upload_ajax.gif" /></b>
+                     </div>
+                  </div>
+                  <div class="header-division header-Results">
+                     <div class="image-header">
+                        <img class="icon-header" src="../images/icons/vector2.png" />
+                     </div>
+                     <div>
+                        <span class="info" style="display: none;">
+                        <img src="../images/loader_small.svg" />
+                        </span>
+                        </br><b class="text-bottom">#<span id="total_records"><img src="../images/loader-upload_ajax.gif"></span> of results</b>
+                     </div>
+                  </div>                                   
+                  <div class="header-division header-NumOfReviews">
+                     <div class="image-header">
+                        <img class="icon-header" src="../images/icons/vector5.png" />
+                     </div>
+                     <div>
+                        <span class="info" style="display: none;">
+                        <img src="../images/loader_small.svg" />
+                        </span>
+                        </br><b class="text-bottom">#<span id="avg_reviews"><img src="../images/loader-upload_ajax.gif"></span>&nbsp;&nbsp;Avg. of Reviews</b>
+                     </div>
+                  </div>
+                  <div class="header-division header-Rating">
+                     <div class="image-header">
+                        <img class="icon-header" src="../images/icons/vector6.png" />
+                     </div>
+                     <div>
+                        <span class="info" style="display: none;">
+                        <img src="../images/loader_small.svg" />
+                        </span>
+                        </br><b class="text-bottom"><span id="avg_rating"><img src="../images/loader-upload_ajax.gif"></span>&nbsp;&nbsp;Avg. Rating</b>
+                     </div>
+                  </div>
+               </div>
+               <div class="filter-option-div">
+                  <span id="global_msg"></span>
+                  <a class="search-bar" style="display: block;">
+                  <input class="search" placeholder="Search..." type="search" data-column="all">   
+                  </a>
+                  <a class="icon-filter-a" id="filters" href="#">
+                  <b class="icon-filter-icon" id="filter-btn"></b>
+                  <span>Filter</span>
+                  </a>
+                  <a id="setting-popup-id" data-toggle="modal" data-target="#setting-popup" title="Options/Configuration" aria-describedby="qtip-26">
+                  <b class="options-btn-icon"></b>
+                  <span>Settings</span>
+                  </a>
+                  <a id="vimeo-video-href" style="display: none;" class="icon-filter colorbox" href="http://asinspector.com/members/" target="_blank" title="Training">
+                  <b class="training-btn-icon"></b>
+                  <span>Training</span>
+                  </a>
+               </div>
+            </div>
+            <div class="background-table">
+               <div class="table-scroll">
+                  <table id="main-table" class="tablesorter-blue tablesorter tablesorter29b72a224a31c dataTable" role="grid">
+                     <thead>
+                        <tr class="active-line-cb">
+                           <th class="srCol">Sr. No.</th>
+                           <th class="asinCol">ASIN</th>
+                           <th class="productNameCol">Product Name</th>
+                           <th class="estimatedCol">Est. Sale/Month</th>
+                           <th class="estimatedRevenueCol">Est. Revenue</th>
+                           <th class="saleRankCol">Saller Rank</th>
+                           <th class="ratingCol">Rating</th>
+                           <th class="reviewCol">#Review</th>
+                           <th class="categoryCol">Category</th>
+                           <th style="display: none;">&nbsp;</th>
+                           <th style="display: none;">&nbsp;</th>
+                           <th style="display: none;">&nbsp;</th>
+                           <th style="display: none;">&nbsp;</th>
+                        </tr>
+                        <tr class="light-bg">
+                           <th class="srCol">Sr. No.</th>
+                           <th class="asinCol">ASIN</th>
+                           <th class="productNameCol">Product Name</th>
+                           <th class="estimatedCol">Est. Sale/Month</th>
+                           <th class="estimatedRevenueCol">Est. Revenue</th>
+                           <th class="saleRankCol">Saller Rank</th>
+                           <th class="ratingCol">Rating</th>
+                           <th class="reviewCol">#Review</th>
+                           <th class="categoryCol">Category</th>
+                           <th style="display: none;">&nbsp;</th>
+                           <th style="display: none;">&nbsp;</th>
+                           <th style="display: none;">&nbsp;</th>
+                           <th style="display: none;">&nbsp;</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                     </tbody>
+                  </table>
+                  <table id="header-fixed"></table>
+                  <img src="../images/arrow-left.png" class="move-to-left" />
+                  <img src="../images/arrow-right.png" class="move-to-right" />
+               </div>
+            </div>
+            <br class="clr" />
+            <div class="footer">
+               <a id="export-csv" download="data.csv" href="#" title="Export to CSV">
+               <img src="../images/csv.png" />
+               </a>
+               <a id="get-link" href="#" title="Open Amazon link of this page">
+               <img src="../images/link.png" />
+               </a>
+               <!-- a id="get-keywords" class="colorbox" href="#get-keywords-trends" title="Google Trends Based On Your Search">
+                  <img src="../images/key.png" />
+                  </a -->
+               <a id="act-search-amazon" data-toggle="modal" data-target="#search-keyword" title="Make a new search on Amazon">
+               <img src="../images/amazon.png" />
+               </a>
+               <a class="act-font-plus" href="#" title="Increase font size">
+               <img src="../images/plusfont.png" />
+               </a>
+               <a class="act-font-minus" href="#" title="Decrease font size">
+               <img src="../images/minusfont.png" />
+               </a>
+               <!-- a id="zoom-in" href="#" title="Zoom In Page">
+                  <img src="../images/zoom-in-icon.png" alt="Load" />
+                  </a -->
+               <a  class="import-asins colorbox" data-toggle="modal" data-target="#import_list_asin" title="Import list of ASINs">
+               <img src="../images/vector_smart_object_28.png" />
+               </a>
+               <a style="display: none;" class="import-asins colorbox" data-toggle="modal" data-target="#import_list_upc" title="Import list of UPCs">
+               <img src="../images/vector_smart_object_28.png" />
+               </a>
+               <a class="favorites-urls" data-toggle="modal" data-target="#favorites-urls" title="Manage favorites">
+               <img src="../images/favorites.png" />
+               </a>
+               <a class="brainstorm" href="#brainstorm" title="Brainstorm and discover">
+               <img src="../images/brainstorm.png" />
+               </a>
+               <a class="barcode" href="#barcode" title="Recover scanned items">
+               <img src="../images/barcode.png" />
+               </a>
+               <a href="#bulk-upc" id="open-bulk-upc" title="Amazon Done For You" class="open-done-for-you-new-window">
+               <img src="../images/doneforyou.png" />
+               </a>
+               <a id="more-products" href="#" title="Add and load next products">
+               <img src="../images/load.png" alt="Load" />
+               </a>
+               <a id="xxx" href="#" title="dd" style="display:none;">
+               <img src="../images/load.png" alt="Load" />
+               </a>
+               <div style="float:right;">
+                  <!-- <a id="mws-group" class="mws-btn" href="#mws-screen" title="MWS API Settings" >
+                     <img height="16px" src="../images/mws-icon.png" />
+                     </a> -->
+                  <a style="display: none;" href="#whats-new" id="whats-new" title="What's New">
+                  <img src="../images/announcement_icon.png" />
+                  </a>
+                  <span class="bottom-number-of-pages" title="Number of pages to load">
+                  <img src="../images/page-left.png" class="bottom-page-left" />
+                  <input type="number" min="1" class="bottom-number-of-pages-page-number" value="1"
+                     style="width: 30px; text-align: center;">page(s)
+                  <img src="../images/page-right.png" class="bottom-page-right" />
+                  </span>
+                  <span class="uptodate" style="margin-left:10px;font-size: 11px;"></span>
+               </div>
+            </div>
+            <div id="options-screen">
+               <div class="w500px">
+                  <div class="option-fields">
+                  </div>
+                  <div class="extra-option-fields">
+                  </div>
+               </div>
+            </div>
+            <!-- Modal For Full Rank -->
+            <div class="modal fade" id="full-rank-popup" role="dialog">
+               <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><a href="https://www.amazonsoldout.com" target="_blank" class="logo" tabindex="9999">
+                           <img class="main-logo" src="../images/logo_images/logo.png"><br><br>Full Rank
+                           </a>
+                        </h4>
+                     </div>
+                     <div class="modal-body">
+                        <div class="w500px full-ranked">
+                        </div>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Modal For editorial review -->
+            <div class="modal fade" id="editorial-review-popup" role="dialog">
+               <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><a href="https://www.amazonsoldout.com" target="_blank" class="logo" tabindex="9999">
+                           <img class="main-logo" src="../images/logo_images/logo.png"><br><br>Editorial Review
+                           </a>
+                        </h4>
+                     </div>
+                     <div class="modal-body">
+                        <div class="w500px editorial-reviews">
+                        </div>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Modal For price history keepa.com -->
+            <div class="modal fade" id="price-history-popup" role="dialog">
+               <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><a href="https://www.amazonsoldout.com" target="_blank" class="logo" tabindex="9999">
+                           <img class="main-logo" src="../images/logo_images/logo.png"><br><br>Price History
+                           </a>
+                        </h4>
+                     </div>
+                     <div class="modal-body">
+                        <div class="w500px">
+                           <table border="0" class="favorites-list" width="100%" cellpadding="0" cellspacing="0">
+                              <thead>
+                              </thead>
+                              <tbody>
+                                 <center>
+                                    <div id="priceHistorySource">
+                                       <iframe class="graph" frameborder="0" width="100%" height="310px" src="http://keepa.com/iframe_addon.html#1-0-B06XZWHBJ4"></iframe><br><br><a target="_blank" href="https://keepa.com/#!product/1-B06XZWHBJ4">Source: keepa.com</a>
+                                    </div>
+                                 </center>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Modal For Add to favourites -->
+            <div class="modal fade" id="favorites-urls-popup" role="dialog">
+               <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><a href="https://www.amazonsoldout.com" target="_blank" class="logo" tabindex="9999">
+                           <img class="main-logo" src="../images/logo_images/logo.png"><br><br>Favorites
+                           </a>
+                        </h4>
+                     </div>
+                     <div class="modal-body">
+                        <div class="w500px">
+                           <table border="0" class="favorites-list" width="100%" cellpadding="0" cellspacing="0">
+                              <thead>
+                                 <tr>
+                                    <th width="66%">Search Keywords</th>
+                                    <th class="w10p">Actions</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                              </tbody>
+                              <tfoot>
+                                 <tr>
+                                    <td colspan="2">
+                                       <center>
+                                          <input class="favorite-url-add-text" placeholder="Search KeyWords" type="text" />
+                                          <span id="fav-keyword-msg" style="color: red;"></span><br>
+                                          <input type="button" name="btn-add-favorite" id="btn-add-favorite" value="Add to favorites" />
+                                       </center>
+                                    </td>
+                                 </tr>
+                              </tfoot>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- model for Brain storm and discover -->
+            <div class="modal fade" id="brain-strom-popup" role="dialog">
+               <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><a href="https://www.amazonsoldout.com" target="_blank" class="logo" tabindex="9999">
+                           <img class="main-logo" src="../images/logo_images/logo.png"><br><br>Brainstorm And Discover
+                           </a>
+                        </h4>
+                     </div>
+                     <div class="modal-body">
+                        <div class="w500px">
+                           <table border="0" class="brainstorm-table" width="100%" cellpadding="0" cellspacing="0">
+                              <thead>
+                                 <tr>
+                                    <th width="60%">Random Products</th>
+                                    <th title="Number of products">Nº of products</th>
+                                    <th title="Average SalesRank">Avg. rank</th>
+                                    <th title="Average price">Avg. price</th>
+                                    <th>Actions</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr class="brainstorm-helper">
+                                    <td colspan="5" class="brainstorm-load" style="display: none;"><span class="brainstorm_msg">Please wait...</span></td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <center>
+                              <br /><br />
+                              <!--  <input type="text" placeholder="enter keyword here..." name="brainstorm-keyword" id="brainstorm-keyword"> -->
+                              <input type="button" name="btn-refresh-keywords-brainstorm" id="btn-refresh-keywords-brainstorm" value="Find New Product" />
+                              <!-- <input type="button" name="btn-refresh-keywords-brainstorm" id="btn-refresh-keywords-brainstorm" value="Find new products" /> -->
+                           </center>
+                        </div>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- End brain strom popup -->
+            <!-- barcode scanner -->
+            <div class="modal fade" id="barcode-popup" role="dialog">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h2>Legendary Analysis Scanner - Recover Scanned Items</h2>
+                        <p>To use the Amazonsoldout scanner, access <a href="http://amazonsoldout.com/scanner/" target="_blank">http://amazonsoldout.com/scanner</a> on your phone or tablet and take a picture of the barcodes you would like to search for on Amazon. The app will give you a <b>MasterKey</b>, which you can use to access the barcodes you scanned.</p>
+                     </div>
+                     <div class="modal-body">
+                        <div class="w500px">
+                           <table border="0" class="barcode-table" width="100%" cellpadding="0" cellspacing="0">
+                              <thead>
+                                 <tr>
+                                    <th width="85%">MasterKey</th>
+                                    <th class="w10p">Actions</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                              </tbody>
+                              <tfoot>
+                                 <tr>
+                                    <td>
+                                       <input class="barcode-input" placeholder="MasterKey" type="text" />
+                                    </td>
+                                    <td>
+                                       <input type="button" name="btn-add-barcode" id="btn-add-barcode" value="Add to list" />
+                                    </td>
+                                 </tr>
+                              </tfoot>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal fade" id="barcode-interface" role="dialog">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="w500px">
+                        <h2 class="barcode-masterkey"> </h2>
+                        <div class="modal-header">
+                           <div class="barcode-loading">
+                              <center>
+                                 <br />
+                                 <img src="../images/loader_big.svg" width="50px" />
+                                 <br />
+                              </center>
+                           </div>
+                        </div>
+                        <div class="modal-body">
+                           <div class="barcode-after-loaded">
+                              <table border="0" class="barcode-list-table" width="100%" cellpadding="0" cellspacing="0">
+                                 <thead>
+                                    <tr>
+                                       <th class="barcode-td-column" width="15%">Barcode</th>
+                                       <th width="85%">Amazon product</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                 </tbody>
+                                 <tfoot>
+                                    <tr>
+                                       <td colspan="2">
+                                          <center>                                       
+                                             <input type="button" name="btn-open-barcodes" id="btn-open-barcodes" value="Open products on Amazonsoldout PRO" />
+                                          </center>
+                                       </td>
+                                    </tr>
+                                 </tfoot>
+                              </table>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                        <br /><br /><br />
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="get-product-keywords" class="hidden">
+               <div class="w900px">
+                  <div class="get-product-keywords-content">
+                  </div>
+               </div>
+            </div>
+            <div id="frequently-bought-together" class="hidden">
+               <div class="w500px">
+                  <div class="frequently-bought-together-content">
+                     <br /><br /><br /><br />
+                     <center>
+                        <img style="width:40px;" src="../images/loader_big.svg" />
+                        <br /><br />
+                        <b>Looking for Frequently Bought Together...</b>
+                     </center>
+                     <br /><br />
+                  </div>
+               </div>
+            </div>
+            <div id="get-product-variations" class="hidden">
+               <div class="w500px">
+                  <div class="get-product-variations">
+                     <br /><br /><br /><br />
+                     <center>
+                        <img style="width:40px;" src="../images/loader_big.svg" />
+                        <br /><br />
+                        <b>Looking for Child/Variations products...</b>
+                     </center>
+                     <br /><br />
+                  </div>
+               </div>
+            </div>
+            <div id="get-product-stock" class="hidden">
+               <div class="w500px">
+                  <div class="get-product-stock-content">
+                     <br /><br /><br /><br />
+                     <center class="inventory-before">
+                        <img style="width:40px;" src="../images/loader_big.svg" />
+                        <br /><br />
+                        <b>Looking for inventory on hand...</b>
+                     </center>
+                     <center class="inventory-after">
+                        <b>
+                        <span></span>
+                        </b>
+                        <br /><br />
+                     </center>
+                     <br /><br />
+                  </div>
+               </div>
+            </div>
+            <div id="net-payout">
+               <div class="w500px">
+                  <form id="form-net-payout" style="height: 420px;">
+                     <input type="hidden" id="asin-net-payout" />
+                     <p>Provide your cost and see the profit you will have when selling this product "fulfilled by Amazon". This tool will get the Amazon Selling fees and fulfilled by Amazon fees and inform your NET Payout and Return on Investment.</p>
+                     <br />
+                     <div class="option-fields">
+                        <label>
+                        <span><b>Amazon Price</b>: </span>
+                        <input type="number" step="any" id="amazon-price-net-payout" required />
+                        </label>
+                        <label>
+                        <span><b>Your Cost</b>: </span>
+                        <input type="inumber" step="any" id="your-price-net-payout" required />
+                        </label>
+                     </div>
+                     <br />
+                     <div class="center">
+                        <input type="submit" value="Get NET Payout" id="calculate-net-payout" /> &nbsp;
+                        <input type="button" value="Break-even cost" id="discover-breakeven-cost" />
+                        <div class="hidden" id="loader-net-payout">
+                           <img src="../images/loader_big.svg" height="30px" />
+                        </div>
+                        <div class="hidden alert-info" id="result-net-payout">
+                           <table border="0">
+                              <tr>
+                                 <td class="tbl-col1">Fulfillment by Amazon Fees:</td>
+                                 <td class="tbl-col2">
+                                    <b class="fba-fees-payout"></b><small class="float-right">(<a href="#" class="fba-fees-payout-a">Show/Hide details</a>)</small> 
+                                    <small>
+                                       <div class="fba-fees-description hidden"></div>
+                                    </small>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td class="tbl-col1">NET Payout:</td>
+                                 <td class="tbl-col2"><b class="net-payout"></b></td>
+                              </tr>
+                              <tr>
+                                 <td class="tbl-col1">Return On Investment (ROI):</td>
+                                 <td class="tbl-col2"><b class="roi"></b></td>
+                              </tr>
+                              <tr>
+                                 <td class="tbl-col1">Number of sellers on Amazon:</td>
+                                 <td class="tbl-col2"><b class="sellers-num"></b></td>
+                              </tr>
+                           </table>
+                        </div>
+                     </div>
+                     <br />
+                  </form>
+               </div>
+            </div>
+            <div id="get-keywords-trends" class="hidden">
+               <div class="w900px">
+                  <h2 class="main-keywords"></h2>
+                  <iframe frameborder="0px" class="graph-trends" src="" width="100%" height="340px">
+                     <center><img height="50px" src="../images/loader_big.svg" /></center>
+                  </iframe>
+                  <h4>Related keywords:</h4>
+                  <div class="related-trends">
+                     <center><img height="50px" src="../images/loader_big.svg" /></center>
+                  </div>
+                  <br /><br /><br />
+               </div>
+            </div>
+            <!-- Modal For Settings -->
+            <div class="modal fade" id="setting-popup" role="dialog">
+               <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><a href="https://www.amazonsoldout.com" target="_blank" class="logo" tabindex="9999">
+                           <img class="main-logo" src="../images/logo_images/logo.png"><br><br>Settings
+                           </a>
+                        </h4>
+                     </div>
+                     <div class="modal-body">
+                        <div id="import-asins" class="hiddens">
+                           <div class="w500px">
+                              <div id="cboxContent" style="float: left; width: 500px; height: 559px;">
+                                 <div id="cboxLoadedContent" style="width: 500px; overflow: auto; height: 539px;">
+                                    <div class="w500px">
+                                       <div class="option-fields">
+                                          <label style="display: none;" class="optionlabel"><span>Show <b data-hasqtip="51" oldtitle="Sr. No." title="" aria-describedby="qtip-51">Sr. No.</b> </span>
+                                          <label class="switch">
+                                             <input type="checkbox" class="colToShow" data-col="srCol"  id="hasPopup">
+                                             <div class="slider round"></div>
+                                          </label>
+                                          </label>                                               
+                                          <label class="optionlabel"><span>Show <b title="Show Amazon Product ID">ASIN</b>: </span>
+                                          <label class="switch">
+                                             <input class="colToShow" data-col="asinCol" type="checkbox" id="ASIN">
+                                             <div class="slider round"></div>
+                                          </label>
+                                          </label>
+                                          <label class="optionlabel"><span>Show <b title="Show Product Name for amazon products in table">Product Name</b>: </span>
+                                          <label class="switch">
+                                             <input type="checkbox" class="colToShow" data-col="productNameCol" id="Title">
+                                             <div class="slider round"></div>
+                                          </label>
+                                          </label>
+                                          <label class="optionlabel"><span>Show <b title="Show category for Amazon products in table">Category</b>: </span>
+                                          <label class="switch">
+                                             <input type="checkbox" class="colToShow" data-col="categoryCol" id="Category">
+                                             <div class="slider round"></div>
+                                          </label>
+                                          </label>
+                                          <label class="optionlabel"><span>Show <b title="Show Product SalesRank / Best Seller Rank in Main Category. Rank is subcategory is not considered.">Rank</b>: </span>
+                                          <label class="switch">
+                                             <input type="checkbox" class="colToShow" data-col="saleRankCol"  id="SalesRank">
+                                             <div class="slider round"></div>
+                                          </label>
+                                          </label>
+                                          <label class="optionlabel"><span>Show <b title="Estimated sales per month<br ></b> We take the info of the product up to the minute and extrapolate it to generate the average quantity of sales per month">Est. Sales (month)</b>: </span>
+                                          <label class="switch">
+                                             <input type="checkbox" class="colToShow" data-col="estimatedCol" id="EstSales">
+                                             <div class="slider round"></div>
+                                          </label>
+                                          </label>
+                                          <label class="optionlabel"><span>Show <b title="Estimated Revenue is calculated by multiplying estimates sales with default product price">Est. Revenue (month)</b>: </span>
+                                          <label class="switch">
+                                             <input type="checkbox" class="colToShow" data-col="estimatedRevenueCol" id="EstRevenue">
+                                             <div class="slider round"></div>
+                                          </label>
+                                          </label>
+                                          <label class="optionlabel"><span>Show <b data-hasqtip="53" oldtitle="Show Number of Reviews product has" title="" aria-describedby="qtip-53"># of Reviews</b>: </span>
+                                          <label class="switch">
+                                             <input type="checkbox" class="colToShow" data-col="reviewCol" id="NumOfReviews">
+                                             <div class="slider round"></div>
+                                          </label>
+                                          </label>
+                                          <label class="optionlabel"><span>Show <b title="Show Amazon product rating out of 5">Rating</b>: </span>
+                                          <label class="switch">
+                                             <input type="checkbox" class="colToShow" data-col="ratingCol" id="Rating" value="1" checked="checked">
+                                             <div class="slider round"></div>
+                                          </label>
+                                          </label>                                                                                
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Modal For search keyword of Amazon -->
+            <div class="modal fade" id="search-keyword" role="dialog">
+               <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><a href="https://www.amazonsoldout.com" target="_blank" class="logo" tabindex="9999">
+                           <img class="main-logo" src="../images/logo_images/logo.png"><br><br>Search Keyword
+                           </a>
+                        </h4>
+                     </div>
+                     <div class="modal-body">
+                        <div id="import-asins" class="hiddens">
+                           <div class="w500px">
+                              <h2>Search on Amazon</h2>
+                              <p class="center info-search-amazon">No products were found, please search in the box below.<br /><br /></p>
+                              <div class="form-group">
+                                 <label for="sel1">Select list:</label>
+                                 <select class="form-control" id="searchDropdownBox" name="url" title="Search in">
+                                    <option value="search-alias=aps">All Departments</option>
+                                    <option value="search-alias=alexa-skills">Alexa Skills</option>
+                                    <option value="search-alias=amazon-devices">Amazon Devices</option>
+                                    <option value="search-alias=warehouse-deals">Amazon Warehouse Deals</option>
+                                    <option value="search-alias=appliances">Appliances</option>
+                                    <option value="search-alias=mobile-apps">Apps &amp; Games</option>
+                                    <option value="search-alias=arts-crafts">Arts, Crafts &amp; Sewing</option>
+                                    <option value="search-alias=automotive">Automotive Parts &amp; Accessories</option>
+                                    <option value="search-alias=baby-products">Baby</option>
+                                    <option value="search-alias=beauty">Beauty &amp; Personal Care</option>
+                                    <option value="search-alias=stripbooks">Books</option>
+                                    <option value="search-alias=popular">CDs &amp; Vinyl</option>
+                                    <option value="search-alias=mobile">Cell Phones &amp; Accessories</option>
+                                    <option value="search-alias=fashion">Clothing, Shoes &amp; Jewelry</option>
+                                    <option value="search-alias=fashion-womens">&nbsp;&nbsp;&nbsp;Women</option>
+                                    <option value="search-alias=fashion-mens">&nbsp;&nbsp;&nbsp;Men</option>
+                                    <option value="search-alias=fashion-girls">&nbsp;&nbsp;&nbsp;Girls</option>
+                                    <option value="search-alias=fashion-boys">&nbsp;&nbsp;&nbsp;Boys</option>
+                                    <option value="search-alias=fashion-baby">&nbsp;&nbsp;&nbsp;Baby</option>
+                                    <option value="search-alias=collectibles">Collectibles &amp; Fine Art</option>
+                                    <option value="search-alias=computers">Computers</option>
+                                    <option value="search-alias=courses">Courses</option>
+                                    <option value="search-alias=financial">Credit and Payment Cards</option>
+                                    <option value="search-alias=digital-music">Digital Music</option>
+                                    <option current="parent" value="search-alias=electronics">Electronics</option>
+                                    <option value="search-alias=lawngarden">Garden &amp; Outdoor</option>
+                                    <option value="search-alias=gift-cards">Gift Cards</option>
+                                    <option value="search-alias=grocery">Grocery &amp; Gourmet Food</option>
+                                    <option value="search-alias=handmade">Handmade</option>
+                                    <option value="search-alias=hpc">Health, Household &amp; Baby Care</option>
+                                    <option value="search-alias=local-services">Home &amp; Business Services</option>
+                                    <option value="search-alias=garden">Home &amp; Kitchen</option>
+                                    <option value="search-alias=industrial">Industrial &amp; Scientific</option>
+                                    <option value="search-alias=digital-text">Kindle Store</option>
+                                    <option value="search-alias=fashion-luggage">Luggage &amp; Travel Gear</option>
+                                    <option value="search-alias=luxury-beauty">Luxury Beauty</option>
+                                    <option value="search-alias=magazines">Magazine Subscriptions</option>
+                                    <option value="search-alias=movies-tv">Movies &amp; TV</option>
+                                    <option value="search-alias=mi">Musical Instruments</option>
+                                    <option value="search-alias=office-products">Office Products</option>
+                                    <option value="search-alias=pets">Pet Supplies</option>
+                                    <option value="search-alias=prime-exclusive">Prime Exclusive Savings</option>
+                                    <option value="search-alias=pantry">Prime Pantry</option>
+                                    <option value="search-alias=instant-video">Prime Video</option>
+                                    <option value="search-alias=software">Software</option>
+                                    <option value="search-alias=sporting">Sports &amp; Outdoors</option>
+                                    <option value="search-alias=tools">Tools &amp; Home Improvement</option>
+                                    <option value="search-alias=toys-and-games">Toys &amp; Games</option>
+                                    <option value="search-alias=vehicles">Vehicles</option>
+                                    <option value="search-alias=videogames">Video Games</option>
+                                 </select>
+                              </div>
+                              <input id="ipt-search-amazon" placeholder="search keywords" value="" style="width:96%; height:40px; margin-left:1%;" /><span style="color: red;display: none;" id="search-keyword-msg"></span><br /><br /><br />
+                              <center>
+                                 <input type="button" name="btn-search-amazon" id="btn-search-amazon" value="Search" />
+                                 <br /><br />
+                                 <img class="loader-search-amazon" src="../images/loader_small.svg" height="40px" />
+                              </center>
+                              <br /><br />
+                           </div>
+                        </div>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Modal FOR import list of ASIN -->
+            <div class="modal fade" id="import_list_asin" role="dialog">
+               <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                     <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#home">ASINs</a></li>
+                        <li><a data-toggle="tab" href="#menu1">UPCs</a></li>
+                     </ul>
+                     <div class="tab-content">
+                        <div id="home" class="tab-pane fade in active">
+                           <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title"><a href="https://www.amazonsoldout.com" target="_blank" class="logo" tabindex="9999">
+                                 <img class="main-logo" src="../images/logo_images/logo.png"><br><br>Import ASIN List
+                                 </a>
+                              </h4>
+                           </div>
+                           <div class="modal-body">
+                              <div id="import-asins" class="hiddens">
+                                 <div class="w500px">
+                                    <h2>Import list of ASINs</h2>
+                                    <div class="loadfromfile">
+                                       <p><b>Select a file in your computer:</b></p>
+                                       <p><input type="file" id="filefromcsv"></p>
+                                       <p>Format File : <a href="../resources/format.csv">click</a></p>
+                                    </div>
+                                    <p><b><span class="loadfromfile">Or </span>Paste your list of ASINs in the box below (one ASIN per line)</b></p>
+                                    <center>
+                                       <textarea id="ipt-list-asin"></textarea>
+                                       <br /><br /><br />
+                                       <input type="button" name="btn-search-asin" id="btn-search-asin" value="Analyze ASINs" />
+                                       <img class="loader-search-asin hidden" src="../images/loader_small.svg" height="40px" />
+                                       <br /><br />
+                                    </center>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div id="menu1" class="tab-pane fade">
+                           <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title"><a href="https://www.amazonsoldout.com" target="_blank" class="logo" tabindex="9999">
+                                 <img class="main-logo" src="../images/logo_images/logo.png"><br><br>Import UPC List
+                                 </a>
+                              </h4>
+                           </div>
+                           <div class="modal-body">
+                              <div id="import-upc" class="hiddens">
+                                 <div class="w500px">
+                                    <h2>Import list of UPCs</h2>
+                                    <div class="loadfromfile">
+                                       <p><b>Select a file in your computer:</b></p>
+                                       <p><input type="file" id="filefromcsvupc"></p>
+                                       <p>Format File : <a href="../resources/formatupc.csv">click</a></p>
+                                    </div>
+                                    <p><b><span class="loadfromfile">Or </span>Paste your list of UPCs in the box below (one UPC per line)</b></p>
+                                    <center>
+                                       <textarea id="ipt-list-upc"></textarea>
+                                       <br /><br /><br />
+                                       <input type="button" name="btn-search-asin" id="btn-search-upc" value="Analyze UPCs" />
+                                       <img class="loader-search-asin hidden" src="../images/loader_small.svg" height="40px" />
+                                       <br /><br />
+                                    </center>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Modal FOR UPC list import-->
+            <div class="modal fade" id="import_list_upc" role="dialog">
+               <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><a href="https://www.amazonsoldout.com" target="_blank" class="logo" tabindex="9999">
+                           <img class="main-logo" src="../images/logo_images/logo.png"><br><br>Import UPC List
+                           </a>
+                        </h4>
+                     </div>
+                     <div class="modal-body">
+                        <div id="import-upc" class="hiddens">
+                           <div class="w500px">
+                              <h2>Import list of UPCs</h2>
+                              <div class="loadfromfile">
+                                 <p><b>Select a file in your computer:</b></p>
+                                 <p><input type="file" id="filefromcsvupc"></p>
+                                 <p>Format File : <a href="../resources/formatupc.csv">click</a></p>
+                              </div>
+                              <p><b><span class="loadfromfile">Or </span>Paste your list of UPCs in the box below (one UPC per line)</b></p>
+                              <center>
+                                 <textarea id="ipt-list-upc"></textarea>
+                                 <br /><br /><br />
+                                 <input type="button" name="btn-search-asin" id="btn-search-upc" value="Analyze UPCs" />
+                                 <img class="loader-search-asin hidden" src="../images/loader_small.svg" height="40px" />
+                                 <br /><br />
+                              </center>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <a href="#inform-ecomtracker-credentials" id="inform-ecomtracker-credentials2" title="EcomTracker sign in" class="colorbox hidden">login</a>
+            <div id="inform-ecomtracker-credentials" class="hidden">
+               <div class="w500px">
+                  <h2>Inform your EcomTracker credentials</h2>
+                  <br />
+                  <input placeholder="Username" type="text" class="ecomfield ecom_username" />
+                  <input placeholder="Password" type="password" class="ecomfield ecom_password" />
+                  <center class="ecom-loader-after-click-on-button">
+                     <br />
+                     <input type="button" id="ecom_make_login" value="Sign in" />
+                     <br /><br />
+                  </center>
+                  <center class="ecom-loader-before-click-on-button hidden">
+                     <img src="../images/loader_big.svg" width="50px" />
+                  </center>
+               </div>
+            </div>
+            <div id="send-to-ecomtracker" class="hidden">
+               <div class="w500px send-to-ecomtracker">
+                  <br />
+                  <center class="beforesend">
+                     <br />
+                     <img src="../images/loader_big.svg" width="50px" />
+                     <br />
+                  </center>
+                  <center class="aftersend">
+                     <br /><br /><br />
+                     <b>Product sent sucessfully!</b>
+                     <br /><br /><br />
+                  </center>
+               </div>
+            </div>
+            <div id="menu-options-column-number">
+               <a href="#" class="cn-select-all">Select all</a>
+               <a href="#" class="cn-deselect-all">Deselect all</a>
+               <a href="#" class="cn-invert-selection">Invert selection</a>
+               <a href="#" class="cn-delete-all-selected">Delete selected</a>
+               <a href="#" class="cn-delete-all-not-selected">Delete <b>not</b> selected</a>
+               <a href="#" class="cn-export-all-selected-csv" id="cn-export-all-selected-csv" download="data.csv">Export selected to CSV</a>
+               <a href="#" class="cn-export-all-selected-xls" id="cn-export-all-selected-xls" download="data.xls">Export selected to XLS</a>
+               <a href="#" class="cn-copy-asin-all-selected">Copy ASINs of selected</a>
+            </div>
+            <div class="cls-menu-options-column-number">
+               <table class="all-sellers">
+                  <tr>
+                     <td><a href="#" class="cn-top-10-sellers">Top 10 sellers</a></td>
+                  </tr>
+                  <tr>
+                     <td><a href="#" class="cn-all-available-sellers">All available sellers</a></td>
+                  </tr>
+                  <tr>
+                     <td><a href="#" class="cn-all-prime-sellers">Only amazon prime sellers</a></td>
+                  </tr>
+                  <tr>
+                     <td><a href="#" class="cn-all-condition-new">Only condition: new</a></td>
+                  </tr>
+                  </tr>
+               </table>
+            </div>
+            <div class="sub-menu-dropdown">
+               <!-- <div class="logo">
+                  <img src="../images/logo-new.png" alt="logo">
+                  </div>
+                  <p>Goal Zero Yeti 400 Portable Power Station, 400Wh Battery Powered Generator with 12v, AC and USB Outputs</p>
+                  <table class="tbbl">
+                  <tr>
+                      <td><a href="#" rel="alibaba" class="cn-store-alibaba">Alibaba</a></td>
+                      <td>$459.95</td>
+                  </tr>
+                  <tr>
+                      <td><a href="#" rel="aliexpress" class="cn-store-aliexpress">AliExpress</a></td>
+                      <td>
+                          <span>$459.99</span>
+                          <span>Goal Zero Yeti 400 Portable Power Station, 400 Wh Battery Powered</span>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><a href="#" rel="ebay" class="cn-store-ebay">eBay</a></td>
+                      <td>Not Found</td>
+                  </tr>
+                  <tr>
+                      <td><a href="#" rel="toysrus" class="cn-store-toysrus">Toys "R" Us</a></td>
+                      <td>Not Found</td>
+                  </tr>
+                  <tr>
+                      <td><a href="#" rel="walmart" class="menu-com cn-store-walmart">Walmart</a></td>
+                      <td>Not Found</td>
+                  </tr>
+                  <tr>
+                      <td><a href="#" rel="target" class="menu-com cn-store-target">Target</a></td>
+                      <td>Not Found</td>
+                  </tr>
+                  <tr>
+                      <td><a href="#" rel="kohls" class="menu-com cn-store-kohls">Kohl's</a></td>
+                      <td>Not Found</td>
+                  </tr>
+                  <tr>
+                      <td><a href="#" rel="overstock" class="menu-com cn-store-overstock">Overstock</a></td>
+                      <td>Not Found</td>
+                  </tr>
+                  <tr>
+                      <td><a href="#" rel="wayfair" class="menu-com menu-uk cn-store-wayfair">Wayfair</a></td>
+                      <td>Not Found</td>
+                  </tr>
+                  <tr>
+                      <td><a href="#" rel="argos" class="menu-uk cn-store-argos">Argos</a></td>
+                      <td>Not Found</td>
+                  </tr>
+                  <tr>
+                      <td><a href="#" rel="asda" class="menu-uk cn-store-asda">Asda</a></td>
+                      <td>Not Found</td>
+                  </tr>
+                  <tr>
+                      <td><a href="#" rel="homedepot" class="cn-store-homedepot">Home Depot</a></td>
+                      <td>Not Found</td>
+                  </tr>
+                  </table>
+                  <input type="submit" class="profit" value="Profit to buy on Amazon and Sell on eBay: $10.04">
+                  <a href="" class="compare">Compare price with competitors</a> -->
+               <a href="#" rel="alibaba" class="cn-store-alibaba">Alibaba</a>
+               <a href="#" rel="aliexpress" class="cn-store-aliexpress">AliExpress</a>
+               <a href="#" rel="ebay" class="cn-store-ebay">eBay</a>
+               <a href="#" rel="toysrus" class="cn-store-toysrus">Toys "R" Us</a>
+               <a href="#" rel="walmart" class="menu-com cn-store-walmart">Walmart</a>
+               <a href="#" rel="target" class="menu-com cn-store-target">Target</a>
+               <a href="#" rel="kohls" class="menu-com cn-store-kohls">Kohl's</a>
+               <a href="#" rel="overstock" class="menu-com cn-store-overstock">Overstock</a>
+               <a href="#" rel="wayfair" class="menu-com menu-uk cn-store-wayfair">Wayfair</a>
+               <a href="#" rel="argos" class="menu-uk cn-store-argos">Argos</a>
+               <a href="#" rel="asda" class="menu-uk cn-store-asda">Asda</a>
+               <a href="#" rel="homedepot" class="cn-store-homedepot">Home Depot</a>
+            </div>
+         </div>
+      </div>
+      <!--  <div id="dialog" style="display:none;">
+         </div>
+         -->
+   </body>

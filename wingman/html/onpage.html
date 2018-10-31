@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/helpers.js"></script>
+    <script src="../js/amazon/amazon.js"></script>
+    <script src="../js/amazon/sha2.js"></script>
+    <script src="../js/onpage.js?98777"></script>
+    <script src="../js/colorbox/jquery.colorbox-min.js"></script>
+    <script src="../js/getEstSales.js"></script>
+    <link rel="stylesheet" href="../css/general.css" />
+    <link rel="stylesheet" href="../css/onpage.css" />
+</head>
+<body class="onpage-asinspector">
+    <div id="result-net-payout">
+        <h2 class="logo">            
+            <img class="main-logo" src="../images/main-logo.png"/>
+        </h2>
+        <div class="asin-line yellow" style="margin-top:-10px; margin-bottom:10px;">
+            &nbsp;
+        </div>
+        <div class="hide-if-no-salesrank">
+            <b>Estimated Sales (month): </b>
+            <span class="estimated-sales-per-month local-EstSales">
+                <img valign="middle" src="../images/loader_big.svg" height="15px" />
+            </span>
+        </div>
+        <div class="hide-if-no-salesrank">
+            <b title="Estimated revenue (month)">Est. Rev. (month): </b>
+            <span class="estimated-revenue-per-month local-EstRevenue">
+                <img valign="middle" src="../images/loader_big.svg" height="15px" />
+            </span>
+        </div>
+        <div class="hide-if-no-salesrank">
+            <b title="Category">Category:</b>
+            <span class="product-category">
+                <img valign="middle" src="../images/loader_big.svg" height="15px" />
+            </span>
+        </div>
+        <div class="hide-if-no-salesrank">
+            <b title="Sales Rank" style="float:left;margin-right:5px;">Sales Rank: </b>
+            <span class="options-SalesRank" style="float:left;margin-right:5px;">
+                <img valign="middle" src="../images/loader_big.svg" height="15px" />
+            </span>
+        </div>
+		<div style="clear:both;height:0px;">&nbsp;</div>
+        <div class="hide-if-no-salesrank" style="margin-top:5px;margin-bottom:5px;">
+          <div>
+            <b>Sale Price :</b>&nbsp;&nbsp; <span class="price-currency"></span> <input type="text" id="ntp_price" style="width: 100px;">
+          </div>
+
+          <br>
+
+          <div>
+            <b>Buy Cost :</b>&nbsp;&nbsp; <span class="price-currency"></span> <input type="text" id="ntp_breakEven" style="width: 100px;">
+          </div>
+
+          <br>
+
+          <div>
+            <b>Net Payout :</b> &nbsp;&nbsp; <span class="price-currency"></span><span id="net_payout_id">$0.00  0%</span>
+          </div>
+        </div>
+
+        <div class="hide-if-no-salesrank actions">
+            <img title="Break Even Cost" class="net-payout" src="../images/net-payout.png">
+            <img title="Open in store..." class="storesbutton" src="../images/storesbutton.png">
+            <img title="Search on camelcamelcamel" class="camelcamelcamel" src="../images/camelcamelcamel.png" rel="camelcamelcamel">
+            <img title="Frequently Bought Together" class="frequently-bought-together" src="../images/frequently-bought-together.png" href="#frequently-bought-together" rel="frequently-bought-together" oldtitle="Frequently Bought Together" alt="">
+            <img title="Get Child/Variations products" class="get-product-variations" src="../images/get-product-variations.png">
+            <img title="Hide Analyzers" class="delete-this-product" src="../images/delete-this-product.png">
+        </div>
+
+        <div class="asin-line hide-if-no-salesrank" style="margin-top:12px; margin-bottom:-7px;">
+            &nbsp;
+        </div>
+        <h4 class="line-separator hide-if-no-fba">FBA fees</h4>
+
+        <div class="asin-line hide-if-no-fba" style="margin-top:-5px; margin-bottom:12px;">
+            &nbsp;
+        </div>
+        <div class="fba-fees-description">
+          
+        </div>
+    </div>
+
+    <div style="display:none" class="local-SalesRank"></div>
+    <div style="display:none" class="local-Rating"></div>
+    <div style="display:none" class="price-price local-BBPrice local-LowestNewPrice local-LowestUsedPrice local-LowestRefurbishedPrice"></div>
+
+    <div class="asin-line yellow" style="margin-top:-10px; margin-bottom:10px;">
+        &nbsp;
+    </div>
+    
+    <div class="store-options sub-menu-dropdown">
+        <a href="#" rel="alibaba" class="cn-store-alibaba store">Alibaba</a>
+        <a href="#" rel="aliexpress" class="cn-store-aliexpress store">AliExpress</a>
+        <a href="#" rel="ebay" class="cn-store-ebay store">eBay</a>
+        <a href="#" rel="toysrus" class="cn-store-toysrus store">Toys "R" Us</a>
+        <a href="#" rel="walmart" class="menu-com cn-store-walmart store">Walmart</a>
+        <a href="#" rel="target" class="menu-com cn-store-target store">Target</a>
+        <a href="#" rel="kohls" class="menu-com cn-store-kohls store">Kohl's</a>
+        <a href="#" rel="overstock" class="menu-com cn-store-overstock store">Overstock</a>
+        <a href="#" rel="wayfair" class="menu-com menu-uk cn-store-wayfair store">Wayfair</a>
+        <a href="#" rel="argos" class="menu-uk cn-store-argos store">Argos</a>
+        <a href="#" rel="asda" class="menu-uk cn-store-asda store">Asda</a>
+        <a href="#" rel="homedepot" class="cn-store-homedepot store">Home Depot</a>
+    </div>
+
+    <div class="remove-onpage-analyzer-options sub-menu-dropdown">
+        <a href="#" class="hide-current-analyzer">Hide current Analyzer</a>
+        <a href="#" class="hide-all-analyzers">Hide all Analyzers</a>
+    </div>
+</body>
+</html>

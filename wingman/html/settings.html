@@ -1,0 +1,388 @@
+<div id="cboxContent" style="float: left; width: 500px; height: 559px;">
+    <div id="cboxLoadedContent" style="width: 500px; overflow: auto; height: 539px;">
+        <div class="w500px"><img src="../images/logo-new.png" class="compare-logo">
+            <div class="option-fields">
+                <label class="optionlabel"><span>Show <b data-hasqtip="51" oldtitle="Full SalesRank information" title="" aria-describedby="qtip-51">on page analytics</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="hasPopup" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b data-hasqtip="49" oldtitle="Show Sponsored Links from Amazon search on ASINspector PRO table" title="" aria-describedby="qtip-49">Sponsored Links</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="includeSponsored">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Show Amazon Product ID">ASIN</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="ASIN" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Show ASIN of Parent Product for product with variations">Parent ASIN</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="ParentASIN">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Make title clickable so Amazon product page will open on new tab when clicked">Link to product</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="DetailPageURL" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Show Product Name for amazon products in table">Product Name</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="Title" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b data-hasqtip="52" oldtitle="Show Brand for Amazon products in table" title="" aria-describedby="qtip-52">Brand</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="Brand" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Show category for Amazon products in table">Category</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="Category" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Show Product SalesRank / Best Seller Rank in Main Category. Rank is subcategory is not considered.">Rank</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="SalesRank" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Estimated sales per month<br ></b> We take the info of the product up to the minute and extrapolate it to generate the average quantity of sales per month">Est. Sales (month)</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="EstSales" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Estimated Revenue is calculated by multiplying estimates sales with default product price">Est. Revenue (month)</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="EstRevenue" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b data-hasqtip="53" oldtitle="Show Number of Reviews product has" title="" aria-describedby="qtip-53"># of Reviews</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="NumOfReviews" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Show Amazon product rating out of 5">Rating</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="Rating" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Seller currently on the BuyBox">BB Seller</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="BBSeller" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Display Thumb Image for product embedded in table">Product Image</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="Image" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Display Large image for product">Product Image (large)</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="ImageBig">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Link to check product and rank history of product">Price/Rank History</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="EvolutionPriceRank">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="BuyBox Price">BB Price</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="BBPrice">
+                        <div class="slider round"></div>
+                    </label>
+                    <label class="span-default-price" title="The default price is the price used to calculate the FBA fees and Estimated Revenue (reload required to apply the new default price)">
+                        <input checked="checked" type="radio" class="default-price" name="default-price" value="BBPrice"> Default price</label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Lowest New Price">Lowest Price (new)</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="LowestNewPrice" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                    <label class="span-default-price" title="The default price is the price used to calculate the FBA fees and Estimated Revenue (reload required to apply the new default price)">
+                        <input type="radio" class="default-price" name="default-price" value="LowestNewPrice"> Default price</label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Shipping cost for the seller with the lowest selling price">Lwst Priced Shipping</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="LowestShipping">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Lowest new price + shipping">Lwst Price (new) + shipping</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="LowestShippingAndPrice">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Fulfillment by Amazon Fees">FBA Fees</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="FBATablefee" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Cost to break-even on this product">Break-even cost</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="BreakEven">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Lowest Used Price">Price (used)</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="LowestUsedPrice">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Lowest Refurbished Price">Price (refurbished)</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="LowestRefurbishedPrice">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Number of sellers selling this product New"># of sellers (new)</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="TotalNew" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Number of sellers selling this product Used"># of sellers (used)</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="TotalUsed" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Number of sellers selling this product Refurbished"># of  sellers (ref.)</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="TotalRefurbished" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Author of product for Books category">Author</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="Author" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Binding category for the product">Binding category</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="Binding">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Show amazon product format">Format</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="Format">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Adult related material?">Adult Related</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="IsAdultProduct">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Number of pages (book/magasine)">Num. Pages</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="NumberOfPages">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Product group Amazon product belongs to">Product Group</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="ProductGroup">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Show date product was published">Publication Date</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="PublicationDate" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Date on which the item was latest released">Release Date</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="ReleaseDate">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Disply studio property of the product">Studio</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="Studio">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Display size of the product">Size</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="Size">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Display main language for the product">Languages</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="Languages">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Show full description of product">Editorial Review</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="EditorialReview">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Similar Product">Sim. Product</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="SimilarProduct">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Display product UPCs">UPC</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="UPC">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Display product EANs">EAN</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="EAN">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Show warranty details of the product">Warranty</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="Warranty">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Display product manufacturer">Manufacturer</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="Manufacturer">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Model Number">Model Nº</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="Model">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Display Manufacturer's part number.">MPN</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="MPN">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Display Part number">Part Number</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="PartNumber">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Show Number of Items">Nº of Items</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="NumberOfItems">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Display package quantity">Package Quantity</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="PackageQuantity">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Display pachage dimentions">Package Dimensions</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="PackageDimensions">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Weight (original amazon value)">Weight</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="Weight">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Weight in Pounds">Weight (lb)</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="WeightLB">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Weight in Ounces">Weight (oz)</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="WeightOZ">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Weight in Kilograms">Weight (kg)</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="WeightKG" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="BuyBox seller Inventory on Seller">BB Shipping cost</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="Shipping">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="It is the sum of the BuyBox price + shipping cost">BB Price + shipping</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="ShippingAndPrice">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Price of product on eBay">eBay Price</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="EbayPrice">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Show full sales rank of product including rank in all subcategories">Full SalesRank</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="ComposedRank">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+            </div>
+            <div class="extra-option-fields">
+                <label class="optionlabel"><span>Show <b title="Display action column">Actions</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="Actions" value="1" checked="checked">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+                <label class="optionlabel"><span>Show <b title="Use Fixed Closing Fees/Per-item Fees on the FBA Fees">Fixed Closing Fees</b>: </span>
+                    <label class="switch">
+                        <input type="checkbox" id="fixedClosingFee">
+                        <div class="slider round"></div>
+                    </label>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div id="cboxTitle" style="float: left; display: block;">Options/Configuration</div>
+    <div id="cboxCurrent" style="float: left; display: none;"></div>
+    <button type="button" id="cboxPrevious" style="display: none;"></button>
+    <button type="button" id="cboxNext" style="display: none;"></button>
+    <button id="cboxSlideshow" style="display: none;"></button>
+    <div id="cboxLoadingOverlay" style="float: left; display: none;"></div>
+    <div id="cboxLoadingGraphic" style="float: left; display: none;"></div>
+    <button type="button" id="cboxClose">close</button>
+</div>

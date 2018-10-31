@@ -1,0 +1,45 @@
+{
+    "manifest_version": 2,
+    "name": "Legendary Analysis - WingMan Lite",
+    "short_name": "Legendary Analysis - WingMan Lite",
+    "version": "1.0.0",
+    "description": "With Legendary Analysis PRO you will be able to get different fields of information about products in Amazon",
+    "icons": { "16"  : "images/icons/wingman.png",
+               "48"  : "images/icons/wingman.png",
+               "128" : "images/icons/wingman.png"
+    },
+    "browser_action": {
+        "default_icon": "images/icons/wingman.png",
+        "default_popup": "html/button.html"
+    },
+    "background": {
+       "scripts": [ "js/background.js","optimizer/background.js","optimizer/jquery.min.js","script/background.js"],
+       "persistent": true
+    },
+    "homepage_url": "https://www.amazonsoldout.com",  
+    "content_scripts": [{
+            "run_at": "document_start",
+            "matches": ["*://www.amazon.com/*"],
+            "css": ["assets/resize/bootstrap.css","assets/resize/jquery-ui.css","css/oncall.css","js/dataTable/jquery.dataTables.min.css","styles/font-awesome.min.css"],
+            "js": ["assets/resize/jquery.min.js","assets/resize/bootstrap.min.js","js/oncall.js","assets/resize/jquery-ui.min.js","js/dataTable/jquery.dataTables.min.js"]
+         },
+     {
+    "js": ["optimizer/jquery.min.js","optimizer/content_script.js"],
+    "css":["optimizer/fix.css"],
+    "matches": ["*://catalog.amazon.com/*"]
+    }],
+    "web_accessible_resources": [
+        "html/onpage.html",
+        "images/*.png",
+        "images",
+        "images/*.svg",
+        "optimizer/logo.png"
+    ],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "permissions": [
+        "*://*/*",
+        "storage",
+        "tabs",
+        "activeTab"
+    ]
+}

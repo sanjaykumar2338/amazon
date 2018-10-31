@@ -1,0 +1,49 @@
+.modal
+{
+    overflow: hidden;
+}
+.modal-dialog{
+    margin-right: 0;
+    margin-left: 0;
+}
+.modal-header { cursor: pointer; }
+div#myModal:focus {    outline: none;}
+
+thead {
+    display: block;
+    width: 1178px;
+}
+
+.modal-body .tab-content { width: 100%; background-color: #fff; overflow: auto;}
+#home table tr th:first-child{ width:33px;}
+#home table tr th,
+#home table tr td{ text-align: left !important; word-break: break-all;  }
+#home table tr th + th,
+#home table tr td + td{ border-left:1px solid #CCC;}
+#home table tr td img{ display: block; margin: auto;  }
+th:first-child, td:first-child {
+    width: auto;
+}
+tbody {
+    display: block;
+    width: 1178px;
+    overflow-x: auto;
+    height: 500px;
+}
+tbody tr {
+    display: block;
+    width: 1178px;
+}
+td {
+    width: 87px;
+    text-align: center !important;
+}
+th {
+    width: 87px;
+    text-align:center !important;
+}
+
+#wingman td{
+
+	width: 25%;
+}

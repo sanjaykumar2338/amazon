@@ -1,0 +1,99 @@
+#aws-data {
+    background:#fff; 
+    color:#000; 
+    padding:10px;
+    width: 99%;
+    height: 100%;
+    max-height:345px;
+    overflow:hidden;
+    z-index:999;
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0; 
+    margin:auto;
+    -webkit-box-shadow:0 0 10px #999;
+    -moz-box-shadow:0 0 10px #999;
+    -ms-box-shadow:0 0 10px #999;
+    -o-box-shadow:0 0 10px #999;
+    box-shadow:0 0 10px #999;
+}
+
+.as-center {
+    text-align: center
+}
+.as-login-container .sd-tooltip:after,
+.as-login-container .narrow[data-sd-tooltip]:after {
+    width: 125px
+}
+.table-main-heading {
+    background-color: rgb(52, 66, 90) !important;
+    color: #fff;
+    font-weight: bold;
+    width: 100%;
+    margin:0px;
+    padding: 10px;
+}
+.table-heading {
+    background-color: rgb(241, 246, 255) !important;
+    color: rgb(117, 117, 117);
+    border-bottom: 1px solid rgb(221, 221, 221);
+    height: 20px;
+    width: 100%;
+}
+#amazonscout_data tr:nth-child(2n+1) {
+    background-color: rgb(245, 245, 245);
+}
+#amazonscout_data td {
+    color: rgb(51, 124, 184);
+}
+.table-heading tr {
+    width: 100%;
+    display: inline-flex;
+    background-color: #fff;
+}
+.table-heading th, .table-heading td {
+    display: inline-block;
+    width: 10%;
+	padding: 7px 10px;    
+}
+.table-heading tbody {
+    height: 225px;
+    overflow: auto;
+    display: block;
+    width: 100%;
+}
+.table-heading thead {
+    overflow: auto;
+    display: block;
+    width: 100%;
+}
+.table-heading thead th:first-child, .table-heading tbody td:first-child {
+    width: auto;
+}
+.table-heading thead tr {
+    padding: 8px 0;
+    background-color: rgb(241, 246, 255) !important;
+}
+.table-main-heading tr th img {
+    padding: 5px;
+    float: left;
+}
+.table-main-heading tr th {
+    text-align: center;
+    vertical-align: middle;
+}
+.table-heading tr td {
+    text-align: center;
+    vertical-align: middle;
+}
+.table-heading tr th {
+    text-align: center;
+    vertical-align: middle;
+}
+.datos{
+  table-layout: fixed;
+}
+.modal-header{
+   cursor: move;
+}
