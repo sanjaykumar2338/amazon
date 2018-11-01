@@ -215,9 +215,9 @@ chrome.runtime.onMessage.addListener(function(message,sender,sendResponse){
 			var right = "<img style='width: 56px;height: 30px;'' src='https://cdn4.iconfinder.com/data/icons/flat-game-ui-buttons-icons-2/80/1-33-512.png'>";
 		
 			var html = '<div class="modal fade"  class="ui-widget-content" data-keyboard="false" data-backdrop="static" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">';
-				html += '<div class="modal-dialog" style="left:6vw;width:auto;">';
-				html += '<div class="modal-content" style="width: 1200px;left: 18vw;">';
-				html += '<div class="modal-header" style="background: #f6f5f3;height: 73px;"><button type="button" class="close" data-dismiss="modal">&times;</button>';				
+				html += '<div class="modal-dialog modal-sm">';
+				html += '<div class="modal-content" style="width: 1200px; margin:auto;">';
+				html += '<div class="modal-header" style="background: #f6f5f3;height: 73px;"><button type="button" class="close" style="font-size:50px;" data-dismiss="modal">&times;</button>';				
 				html += '<h4 class="modal-title" style="margin:auto;width: 12%;"><img style="width:139px;" src="'+path+'"></h4></div>';  				
 				html += '<div class="modal-body">';				            							  
 				
@@ -226,7 +226,7 @@ chrome.runtime.onMessage.addListener(function(message,sender,sendResponse){
 				html +='<div class="tab-content">';
 
 				html +='<div id="home" class="tab-pane fade in active">'; 
-				html += '<table class="table table-striped" id="popuptable">';
+				html += '<table class="table-responsive table table-striped" id="popuptable">';
 				html += '<thead>';	
 				html += `<th style="display:none;" class="sr_no">#</th>						      
 							    	<th class="product_name">Name</th>						      
@@ -249,7 +249,7 @@ chrome.runtime.onMessage.addListener(function(message,sender,sendResponse){
 						 </table></div>`;							
 
 				html += '<div id="menu1" class="tab-pane fade">';
-				html += '<table class="table table-striped" id="wingman">';		 
+				html += '<table class="table-responsive table table-striped" id="wingman">';		 
 				html += '<tbody>';
 				html += '<tr><td><b>Mostly Tshirt on Page</b> <span class="mostly_tshirt_wrong" style="display:none;">'+wrong+'</span><span style="display:none;" class="mostly_tshirt_right">'+right+'</span></td><td><b>Less Than 2000 Results</b> <span style="display:none" class="total_result_wrong">'+wrong+'</span><span style="display:none" class="total_result_right">'+right+'</span></td><td><b>8 out of the 10 Have a BSR</b> <span class="eight_bsr_wrong" style="display:none;">'+wrong+'</span><span class="eight_bsr_right" style="display:none;">'+right+'</span></td><td><b>2 out of the 10 Udner A Million BSR</b> <span class="two_bsr_wrong" style="display:none;">'+wrong+'</span><span class="two_bsr_right" style="display:none;">'+right+'</span></td></tr>';	
 				html += '<tr><td style="display:block;background:transparent;width:100%;"><img id="thumb_loader" style="padding-left:0px"; src="http://www.casasbahia-imagens.com.br/App_Themes/CasasBahia/img/load.gif"><span class="wrong_thumb" style="display:none;"><img style="width: 273px;" src="https://www.m35design.co.uk/wp-content/uploads/2017/07/thumbs-down-bad-review.png"></span><span style="display:none;" class="right_thumb"><img style="width: 273px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmEHUqtAV6doBoMdkR4S-jlGSn1xAY6dd6o-PUeyT6xm5UwMuUQQ"></span></td></tr>';
@@ -340,10 +340,20 @@ chrome.runtime.onMessage.addListener(function(message,sender,sendResponse){
 			        		var num=1;			        	
 
 							$.each(productInfos.all_products, function(k, productInfo) {
-								var sale = 0;
-								var revenue = 0;
+								var sale = 'N/A';
+								var revenue = 'N/A';
+								var rank = 'N/A';
 
-								var sales = calculateSales('com',productInfo.category, productInfo.rank, productInfo.price);
+								if (productInfo.rank > 0) {
+									rank = productInfo.rank;
+								}
+
+								var sales = false;
+								if(productInfo.price > 0) {
+									var sales = calculateSales('com',productInfo.category, rank, productInfo.price);
+								}	
+
+								
 
 								if(sales){
 									sale = sales[0];
@@ -376,15 +386,49 @@ chrome.runtime.onMessage.addListener(function(message,sender,sendResponse){
 								}
 
 								tr += '<td >'+productInfo.asin+'</td>';		
-								tr += '<td>'+productInfo.brand+'</td>';		
-								tr += '<td>'+productInfo.price+'</td>';		
-								tr += '<td>'+productInfo.category+'</td>';		
+
+
+								if(productInfo.brand == null){
+									tr += '<td>N/A</td>';		
+								}else{
+									tr += '<td>'+productInfo.brand+'</td>';		
+								}
+
+								if(productInfo.price > 0) {
+									tr += '<td>'+addCommas(productInfo.price)+'</td>';		
+								}else{
+									tr += '<td>N/A</td>';		
+								}
+
+								if(productInfo.category != null){
+									tr += '<td>'+productInfo.category+'</td>';		
+								}else{
+									tr += '<td>N/A</td>';		
+								}
+
 								tr += '<td>'+productInfo.binding+'</td>';		
-								tr += '<td>'+productInfo.rank+'</td>';		
-								tr += '<td>'+sale+'</td>';		
-								tr += '<td>'+revenue+'</td>';		
-								tr += '<td>'+productInfo.review+'</td>';		
-								tr += '<td>'+productInfo.rating+'</td>';		
+								
+								if (productInfo.rank > 0) {
+									tr += '<td>'+addCommas(productInfo.rank)+'</td>';		
+								}else{
+									tr += '<td>N/A</td>';		
+								}
+
+								tr += '<td>'+addCommas(sale)+'</td>';		
+								tr += '<td>'+addCommas(revenue)+'</td>';										
+
+								if (productInfo.review > 0) {
+									tr += '<td>'+addCommas(productInfo.review)+'</td>';		
+								}else{
+									tr += '<td>N/A</td>';		
+								}
+
+								if (productInfo.rating > 0) {
+									tr += '<td>'+productInfo.rating+'</td>';		
+								}else{
+									tr += '<td>N/A</td>';		
+								}
+
 								tr += '<td>'+productInfo.fullfillby+'</td>';		
 								tr += '<td>'+productInfo.lqs+' / 100</td>';
 								tr += '</tr>'
@@ -405,74 +449,17 @@ chrome.runtime.onMessage.addListener(function(message,sender,sendResponse){
 		        });	
 		    });
 
-			// arrayOfArrays.forEach(function(i){
-			// 	//chunk = trainindIdArrays.splice(0,10); 	
-
-			// 	//console.log('chunk', chunk)	
-
-			// 	$("#popuptable").find('#loading_data').show();
-
-	  //   		$.ajax({
-			//         type: "POST",	        
-			//         url: _apiUrl+"extension/getpopupdata.php",
-			//         data: {asin: i},  
-			//         async: false,		        
-			//         success: function (responseJson) {		        
-			//         		productInfos = $.parseJSON(responseJson);
-			//         		var num=1;
-			        		
-			//         		$("#popuptable").find('#loading_data').hide();	
-
-			// 				$.each(productInfos.all_products, function(k, productInfo) {
-			// 					var sale = 0;
-			// 					var revenue = 0;
-
-			// 					var sales = calculateSales('com',productInfo.category, productInfo.rank, productInfo.price);
-
-			// 					if(sales){
-			// 						sale = sales[0];
-			// 					}else{
-			// 						$(this).find('.estimatedCol').text('N/A');
-			// 					}
-
-			// 					if(sales){
-			// 						revenue = sales[1];
-			// 					}else{
-			// 						$(this).find('.estimatedRevenueCol').text('N/A');
-			// 					} 
-
-			// 					var num_zero = false;
-			// 					if(num < 10){
-			// 						num_zero = true;
-			// 					}
-
-			// 			    	var tr = '<tr>';	
-			// 			    	if(num_zero){					
-			// 						tr += '<td style="display:none;">0'+num+'</td>';		
-			// 					}else{
-			// 						tr += '<td style="display:none;">'+num+'</td>';		
-			// 					}
-			// 					tr += '<td ><a title="'+productInfo.title+'" href="'+productInfo.title+'" target="_blank">'+productInfo.title.substring(0,10)+'</a></td>';		
-			// 					tr += '<td >'+productInfo.asin+'</td>';		
-			// 					tr += '<td>'+productInfo.brand+'</td>';		
-			// 					tr += '<td>'+productInfo.price+'</td>';		
-			// 					tr += '<td>'+productInfo.category+'</td>';		
-			// 					tr += '<td>'+productInfo.binding+'</td>';		
-			// 					tr += '<td>'+productInfo.rank+'</td>';		
-			// 					tr += '<td>'+sale+'</td>';		
-			// 					tr += '<td>'+revenue+'</td>';		
-			// 					tr += '<td>'+productInfo.review+'</td>';		
-			// 					tr += '<td>'+productInfo.rating+'</td>';		
-			// 					tr += '<td>'+productInfo.fullfillby+'</td>';		
-			// 					tr += '<td>'+productInfo.lqs+' / 100</td>';
-			// 					tr += '</tr>'
-
-			// 					num++;						
-			// 					$("#popuptable tbody").prepend(tr);	
-			// 				});	
-			//         }
-			//     });  
-		 //    });
+		    function addCommas(nStr){
+			    nStr += '';
+			    x = nStr.split('.');
+			    x1 = x[0];
+			    x2 = x.length > 1 ? '.' + x[1] : '';
+			    var rgx = /(\d+)(\d{3})/;
+			    while (rgx.test(x1)) {
+			        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+			    }
+			    return x1 + x2;
+			}	
 
 		   bingman();
 
@@ -2154,31 +2141,17 @@ function calculateSales(country,Category, SalesRank, Price)
             denominator = parseInt(denominator);
             if (denominator == 1)
                 denominator++;
-            //console.log('denominator', denominator);
-            //$(dom+'EstSales').text('1 each '+parseInt(denominator)+' months');
-            EstimatedSales = '1 each '+parseInt(denominator)+' months';
+            EstimatedSales = parseInt(denominator);
+            //EstimatedSales = '1 each '+parseInt(denominator)+' months';
         }
         else
         {
-            EstimatedSales = parseInt(EstimatedSales);
-            //console.log('EstimatedSales', EstimatedSales);
-            //$(dom+'EstSales').text(EstimatedSales);
+            EstimatedSales = parseInt(EstimatedSales);        
         }
 
-        //var EstimatedRevenue = "";
-        console.log('Price', Price)
         if(typeof(Price) != "undefined" && Price !== null) {
-        	console.log('price replace',Price)
-            
-            //var Price = Price.replace(",","");
-
-            EstimatedRevenue = parseFloat(EstimatedSales)*parseFloat(Price);
-            //$(dom+'EstRevenue').html(getMoneySymbol()+EstimatedRevenue.format(2));
-            //console.log('EstimatedRevenue', EstimatedRevenue);
+            EstimatedRevenue = parseFloat(EstimatedSales)*parseFloat(Price);         
         }
-
-        console.log('EstimatedSales', EstimatedSales, EstimatedRevenue.toFixed(2));
-
         return [EstimatedSales, EstimatedRevenue.toFixed(2)];
     } 
 }
